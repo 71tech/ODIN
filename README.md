@@ -30,60 +30,7 @@ If Excel files are processed, [abap2xlsx](https://github.com/sapmentors/abap2xls
 ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however it has not been tested. Release 7.50 and later should be fine. S/4 releases should work as well, however test is missing. Feedback at that point is very welcome.
 
 ## Available fields
-
-| **Field** | **Description** |
-| --- | --- |
-| **COUNTER** | Document counter, provide one unique numeric value > 0 per FI document (not per line item) |
-| **STRATEGY** | If supplied, extensions (BAdIs) will be called and the field value of STRATEGY will be passed as filter, see [BAdI Reference](#_BAdI_Reference) |
-| **BUKRS** | Company Code, note that cross-company code postings are possible |
-| **BUTXT** | Document Header Text |
-| **BLDAT** | Document Date in Document |
-| **BUDAT** | Posting Date in the Document |
-| **BLART** | Document type |
-| **SGTXT** | Item Text |
-| **LIFNR** | Account Number of Vendor or Creditor |
-| **KUNNR** | Customer Number |
-| **HKONT** | General Ledger Account |
-| **WRBTR\_S** | Amount gross in document currency in debit. WRBTR\_S and WRBTR\_H must add up to 0 within a document |
-| **WRBTR\_H** | Amount gross in document currency in credit. WRBTR\_S and WRBTR\_H must add up to 0 within in a document |
-| **WAERS** | Currency Key |
-| **MWSKZ** | Tax on Sales/Purchases Code |
-| **ZTERM** | Terms of Payment Key |
-| **CUSTOM<1-10>** | Custom fields, 10 fields of type string available |
-| **AUFNR** | Order Number |
-| **ZLSPR** | Payment Block Key |
-| **QSSKZ** | Withholding Tax Code, available for vendor only |
-| **LZBKZ** | State Central Bank Indicator |
-| **KURSF** | Exchange rate;
- if neither of KURSF and KURSF\_M is supplied, current exchange rate (tcurr) will apply |
-| **KURSF\_M** | Exchange rate, indirect quotation, i.e. units of foreign currency per unit of local currency (displayed in SAP with leading &quot;/&quot; or negative sign, leave out prefix and sign here);
- if neither of KURSF and KURSF\_M is supplied, current exchange rate (tcurr) will apply |
-| **XREF1** | Business Partner Reference Key |
-| **XREF2** | Business Partner Reference Key |
-| **XREF3** | Reference key for line item |
-| **ZFBDT** | Baseline Date for Due Date Calculation |
-| **BEWAR** | Transaction type |
-| **KOSTL** | Cost Center |
-| **PROJK** | Work Breakdown Structure Element (WBS Element) |
-| **VBEL2** | Sales Document |
-| **POSN2** | Sales Document Item |
-| **PRZNR** | Business Process |
-| **VBUND** | Company ID of trading partner |
-| **EBELN** | Purchasing Document Number |
-| **EBELP** | Item Number of Purchasing Document |
-| **MENGE** | Quantity |
-| **MEINS** | Base Unit of Measure |
-| **XBLNR** | Reference Document Number |
-| **ZUONR** | Assignment number |
-| **MANSP** | Dunning Block, available for customer only |
-| **LANDL** | Supplying Country |
-| **UMSKZ** | Special G/L Indicator |
-| **DOC\_STATUS** | Document Status.Leave out for normal documents.For parked documents use value &quot;2&quot; and also set BUS\_ACT = &quot;RFBV&quot;, see SAP Note [2092366](https://launchpad.support.sap.com/#/notes/2092366/E) |
-| **GLVOR** | Business Transaction.Leave out for normal documents.For parked documents use value &quot;RFBV&quot; and also set DOC\_STATUS = &quot;2&quot;, see SAP Note [2092366](https://launchpad.support.sap.com/#/notes/2092366/E). For down payments (noted items) use value &quot;RFST&quot;. |
-| **BVTYP** | Partner bank type |
-| **REBZG** | Document no. of the invoice to which the transaction belongs |
-| **REBZJ** | Fiscal Year of the Relevant Invoice (for Credit Memo) |
-| **REBZZ** | Line Item in the Relevant Invoice |
+Many common fields are available, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
 ## Dataset structure
 
