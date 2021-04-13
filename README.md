@@ -60,15 +60,15 @@ COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRB
 
 ### Example (Excel)
 
-![](RackMultipart20210412-4-11etf58_html_f97dad34804c9fba.png)
+[Simple inputfile](https://github.com/71tech/ODIN/blob/294bfdc74bf3c868d08407ae47897aa92b1d5bdb/examples/ODIN_simple.xlsx).
 
 ## Import program
 
-Use sa38 > ZODIN or Transaction ZODIN, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN).
+Use sa38 > ZODIN or Transaction ZODIN, see [wiki](https://github.com/71tech/ODIN/wiki/ZODIN).
 
 ## Server side processing of multiple files
 
-Use sa38 > ZODIN\_MULTIFILE, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
+Use sa38 > ZODIN\_MULTIFILE, see [wiki](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
 
 ## BAdI Reference
 
