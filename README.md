@@ -32,6 +32,9 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 ## Available fields
 Many common fields are available, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
+## Quick start
+Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit). Create a package first, we recommend ZODIN. You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/294bfdc74bf3c868d08407ae47897aa92b1d5bdb/examples/ODIN_simple.xlsx) for your first posting. It contains an example for an outgoing invoice. Of course some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and FI document will be created. Double click on a row in order to display a document in transaction fb03.
+
 ## Dataset structure
 
 At the moment the interface can process Excel and csv files, further input options are planned.
@@ -57,10 +60,6 @@ COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRB
  2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
  
  2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;802236;;;119,00;;EUR;V2;Another custom value
-
-### Example (Excel)
-
-[Simple inputfile](https://github.com/71tech/ODIN/blob/294bfdc74bf3c868d08407ae47897aa92b1d5bdb/examples/ODIN_simple.xlsx).
 
 ## Import program
 
