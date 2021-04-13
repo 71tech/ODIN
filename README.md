@@ -73,7 +73,7 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 
 | **Field** | **Description** |
 | --- | --- |
-| **COUNTER** | Document counter, provide one unique numeric value \&gt; 0 per FI document (not per line item) |
+| **COUNTER** | Document counter, provide one unique numeric value > 0 per FI document (not per line item) |
 | **STRATEGY** | If supplied, extensions (BAdIs) will be called and the field value of STRATEGY will be passed as filter, see [BAdI Reference](#_BAdI_Reference) |
 | **BUKRS** | Company Code, note that cross-company code postings are possible |
 | **BUTXT** | Document Header Text |
@@ -89,7 +89,7 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 | **WAERS** | Currency Key |
 | **MWSKZ** | Tax on Sales/Purchases Code |
 | **ZTERM** | Terms of Payment Key |
-| **CUSTOM\&lt;1-10\&gt;** | Custom fields, 10 fields of type string available |
+| **CUSTOM<1-10>** | Custom fields, 10 fields of type string available |
 | **AUFNR** | Order Number |
 | **ZLSPR** | Payment Block Key |
 | **QSSKZ** | Withholding Tax Code, available for vendor only |
@@ -141,12 +141,17 @@ For Excel and csv the following applies:
 
 ### Example (csv)
 
-_COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRBTR\_S;WRBTR\_H;WAERS;MWSKZ;CUSTOM1
+COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRBTR\_S;WRBTR\_H;WAERS;MWSKZ;CUSTOM1
+
  1;MY\_STRATEGY;81;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;;;154200;119,00;;EUR;V2;Some custom value
+ 
  1;MY\_STRATEGY;81;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;802236;;;;119,00;EUR;V2;Some custom value
+ 
  2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
+ 
  2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
- 2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;802236;;;119,00;;EUR;V2;Another custom value_
+ 
+ 2;MY\_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;802236;;;119,00;;EUR;V2;Another custom value
 
 ### Example (Excel)
 
