@@ -79,7 +79,7 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 | **LANDL** | Supplying Country |
 | **UMSKZ** | Special G/L Indicator |
 | **DOC\_STATUS** | Document Status.Leave out for normal documents.For parked documents use value &quot;2&quot; and also set BUS\_ACT = &quot;RFBV&quot;, see SAP Note [2092366](https://launchpad.support.sap.com/#/notes/2092366/E) |
-| **GLVOR** | Business Transaction.Leave out for normal documents.For parked documents use value &quot;RFBV&quot; and also set DOC\_STATUS = &quot;2&quot;, see SAP Note [2092366](https://launchpad.support.sap.com/#/notes/2092366/E).For down payments (noted items) use value &quot;RFST&quot;. |
+| **GLVOR** | Business Transaction.Leave out for normal documents.For parked documents use value &quot;RFBV&quot; and also set DOC\_STATUS = &quot;2&quot;, see SAP Note [2092366](https://launchpad.support.sap.com/#/notes/2092366/E). For down payments (noted items) use value &quot;RFST&quot;. |
 | **BVTYP** | Partner bank type |
 | **REBZG** | Document no. of the invoice to which the transaction belongs |
 | **REBZJ** | Fiscal Year of the Relevant Invoice (for Credit Memo) |
