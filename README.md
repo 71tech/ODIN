@@ -117,7 +117,7 @@ COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRB
 
 ## Import program
 
-Use sa38 > ZODIN or Transaction ZODIN, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
+Use sa38 > ZODIN or Transaction ZODIN, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN).
 
 ## Server side processing of multiple files
 
