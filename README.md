@@ -33,7 +33,7 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 Many common fields are available, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
 ## Quick start
-Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit). Create a package first, we recommend ZODIN. You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/a18d07e11fa689ccd2c212c3ca3b8c320953de90/examples/ODIN_simple.xlsx) for your first posting. It contains an example for an outgoing invoice. Of course some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and FI document will be created. Double click on a row in order to display a document in transaction fb03.
+Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit). Create a package first, we recommend ZODIN. You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/a18d07e11fa689ccd2c212c3ca3b8c320953de90/examples/ODIN_simple.xlsx) for your first postings. Of course some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row in order to jump to transaction fb03.
 
 ## Dataset structure
 
@@ -41,7 +41,7 @@ At the moment the interface can process Excel and csv files, further input optio
 
 For Excel and csv the following applies:
 
-- The first row must contain the column names as under [Available fields](#_Available_fields) (alias identifiers are not yet available, but planned)
+- The first row must contain the column names as under [Available fields](#_available_fields) (alias identifiers are not yet available, but planned)
 - The order of the columns is arbitrary
 - From row two on, the user data follows, which must be arranged in the same way as in the first row
 - One FI document line item corresponds to one row in the input data. Several rows are combined into one document via the COUNTER field
