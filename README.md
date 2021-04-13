@@ -41,7 +41,7 @@ At the moment the interface can process Excel and csv files, further input optio
 
 For Excel and csv the following applies:
 
-- The first row must contain the column names as under [Available fields](#available_fields) (alias identifiers are not yet available, but planned)
+- The first row must contain the column names as under [Available fields](#available-fields) (alias identifiers are not yet available, but planned)
 - The order of the columns is arbitrary
 - From row two on, the user data follows, which must be arranged in the same way as in the first row
 - One FI document line item corresponds to one row in the input data. Several rows are combined into one document via the COUNTER field
