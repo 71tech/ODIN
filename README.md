@@ -64,7 +64,7 @@ Use sa38 > ZODIN or Transaction ZODIN, see [wiki](https://github.com/71tech/ODIN
 
 Use sa38 > ZODIN\_MULTIFILE, see [wiki](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
 
-## BAdI Reference
+## BAdI reference (extensions)
 
 See [wiki](https://github.com/71tech/ODIN/wiki/BAdI-Reference-(Extensions)).
 
