@@ -1,46 +1,6 @@
 # Open Document Interface (ODIN)
 
-# TOC
-
-[Purpose 1](#_Toc67308264)
-
-[Key features 1](#_Toc67308265)
-
-[Prerequisites 2](#_Toc67308266)
-
-[Available fields 2](#_Toc67308267)
-
-[Dataset structure 3](#_Toc67308268)
-
-[Example (csv) 3](#_Toc67308269)
-
-[Example (Excel) 3](#_Toc67308270)
-
-[Import program 4](#_Toc67308271)
-
-[Selection 4](#_Toc67308272)
-
-[Server side processing of multiple files 4](#_Toc67308273)
-
-[Selection 5](#_Toc67308274)
-
-[BAdI Reference 5](#_Toc67308275)
-
-[Example: before mapping 6](#_Toc67308276)
-
-[Example: after mapping 7](#_Toc67308277)
-
-[Snippet: after mapping, error for ALV list 8](#_Toc67308278)
-
-[Example: before posting 8](#_Toc67308279)
-
-[Authorization 8](#_Toc67308280)
-
-[Contribution 8](#_Toc67308281)
-
-## Purpose
-
-ODIN is a flexible, extensible, easy to use, multi-purpose import interface for SAP FI documents.
+ODIN is a flexible, extensible, easy to use, multi-purpose import interface for *SAP FI documents*.
 
 It is suitable for postings as they can be entered in the dialog transaction fb01, such as incoming and outgoing invoices or G/L account postings.
 
@@ -65,7 +25,7 @@ It can be used as a dialog or batch application. In addition, e-mail input proce
 
 ## Prerequisites
 
-If Excel files are processed, [abap2xlsx](https://github.com/sapmentors/abap2xlsx) must be installed. For processing of csv files, abap2xlsx is not required and doesn&#39;t need to be installed.
+If Excel files are processed, [abap2xlsx](https://github.com/sapmentors/abap2xlsx) must be installed. For processing of csv files, abap2xlsx is not required and doesn't need to be installed.
 
 ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however it has not been tested. Release 7.50 and later should be fine. S/4 releases should work as well, however test is missing. Feedback at that point is very welcome.
 
@@ -125,8 +85,6 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however i
 | **REBZJ** | Fiscal Year of the Relevant Invoice (for Credit Memo) |
 | **REBZZ** | Line Item in the Relevant Invoice |
 
-##
-
 ## Dataset structure
 
 At the moment the interface can process Excel and csv files, further input options are planned.
@@ -159,7 +117,7 @@ COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRB
 
 ## Import program
 
-Use sa38 \&gt; ZODIN or Transaction ZODIN.
+Use sa38 > ZODIN or Transaction ZODIN.
 
 ### Selection
 
@@ -339,10 +297,6 @@ Note that ODIN uses FMs BAPI\_ACC\_DOCUMENT\_POST / BAPI\_ACC\_DOCUMENT\_CHECK f
        ENDIF.
      ENDLOOP.
    ENDMETHOD.
-
-## Authorization
-
-…
 
 ## Contribution
 
