@@ -117,63 +117,11 @@ COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRB
 
 ## Import program
 
-Use sa38 > ZODIN or Transaction ZODIN.
-
-### Selection
-
-![](RackMultipart20210412-4-11etf58_html_2a88a66f4bc71aed.png)
-
-#### Path file local
-
-Choose a file from your PC, allowed types: xls, xlsx, xlsm, csv.
-
-#### Path file server
-
-Choose a file from your SAP application server, allowed types: xls, xlsx, xlsm, csv.
-
-#### Path file server backup
-
-Specify a file path on your SAP application server, if you want a file from the server to be moved after successful processing.
-
-#### Force batch mode
-
-If &quot;force batch mode&quot; is ticked, the input file will be posted directly without further prompt (live run).
-
-If &quot;force batch mode&quot; is unticked, at first a test run will be performed and a simulation result list will be displayed. The user then must push the button &quot;Post&quot; for a live run.
-
-#### Skip rows
-
-If your input file contain lines (at the beginning of the document) that should be ignored, specify the number of these lines here. Note that the heading line that contains the field names may not be ignored.
-
-#### Parameters relevant only for csv files
-
-Seperator, Delimiter, Thousands separator, Decimal separator.
+Use sa38 > ZODIN or Transaction ZODIN, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
 
 ## Server side processing of multiple files
 
-Use sa38 \&gt; ZODIN\_MULTIFILE.
-
-Note that the program always runs in [Batch mode](#_Batch_mode), hence it will post without further prompt.
-
-### Selection
-
-![](RackMultipart20210412-4-11etf58_html_edc7cf74743053f6.png)
-
-#### Directory server
-
-Choose a directory from your SAP application server, it may contain files of types: xls, xlsx, xlsm, csv.
-
-#### Directory server backup
-
-Specify a directory on your SAP application server, if you want files from the server to be moved after successful processing.
-
-#### File name (Wildcard \* ok)
-
-Specify a file name or use a pattern containing asterisk \* for processing of multiple files.
-
-#### Parameters relevant only for csv files
-
-Separator, Delimiter, Thousands separator, Decimal separator.
+Use sa38 > ZODIN\_MULTIFILE, see [Wiki page](https://github.com/71tech/ODIN/wiki/ZODIN_MULTIFILE).
 
 ## BAdI Reference
 
