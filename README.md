@@ -1,6 +1,6 @@
 # Open Document Interface (ODIN)
 
-ODIN is a flexible, extensible, easy to use, multi-purpose import interface for *SAP FI documents*.
+ODIN is a flexible, extensible, easy to use, multi-purpose import interface for *SAP FI documents*. See [wiki](https://github.com/71tech/ODIN/wiki) for screenshots.
 
 It is suitable for postings as they can be entered in the dialog transaction fb01, such as incoming and outgoing invoices or G/L account postings.
 
