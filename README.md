@@ -50,11 +50,11 @@ For Excel and csv the following applies:
 ### Example (csv)
 ```
 COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRBTR_S;WRBTR_H;WAERS;MWSKZ;CUSTOM1
-1;MY_STRATEGY;81;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;;;154200;119,00;;EUR;V2;Some custom value
-1;MY_STRATEGY;81;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;802236;;;;119,00;EUR;V2;Some custom value
-2;MY_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
-2;MY_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
-2;MY_STRATEGY;81;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;802236;;;119,00;;EUR;V2;Another custom value
+1;MY_OPTIONAL_STRATEGY;1234;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;;;154200;119,00;;EUR;V2;Some custom value
+1;MY_OPTIONAL_STRATEGY;1234;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;802236;;;;119,00;EUR;V2;Some custom value
+2;MY_OPTIONAL_STRATEGY;1234;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
+2;MY_OPTIONAL_STRATEGY;1234;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
+2;MY_OPTIONAL_STRATEGY;1234;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;802236;;;119,00;;EUR;V2;Another custom value
 ```
 ## Import program
 
@@ -70,6 +70,11 @@ See [wiki](https://github.com/71tech/ODIN/wiki/BAdI-Reference-(Extensions)).
 
 ## Contribution
 
-Suggestions: Aliases for good old (german) bkpf/bseg field names, REST/JSON Interface, SOAP/XML Interface, add fields, enable parked documents, enable CPDs, implement default strategies e.g. for DATEV format.
+Your [contribution](https://docs.abapgit.org/guide-contributing.html) is very welcome!
 
-Please make sure to keep downwards compatibility to ABAP release 7.40.
+Suggestions: Aliases for good old (german) bkpf/bseg field names, REST/JSON Interface, SOAP/XML Interface, add fields, enable CPDs, Interface for DATEV format.
+
+## Feedback
+
+Please open an issue for comments, suggestions, questions etc.
+
