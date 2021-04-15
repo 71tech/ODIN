@@ -27,14 +27,15 @@ It can be used as a dialog or batch application. In addition, e-mail input proce
 
 If Excel files are processed, [abap2xlsx](https://github.com/sapmentors/abap2xlsx) must be installed. For processing of csv files, abap2xlsx is not required and doesn't need to be installed.
 
-ABAP releases older than 7.40 will not work. Release 7.40 might be ok, however it has not been tested. Release 7.50 and later should be fine. S/4 releases should work as well, however test is missing. Feedback at that point is very welcome.
+ABAP releases older than 7.40 will not work. Release 7.40 might be ok; however it has not been tested. Release 7.50 and later should be fine. S/4 releases should work as well, however test is missing. Feedback at that point is very welcome.
 
 ## Quick start
-Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit). Create a package first, we recommend ZODIN. You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/a18d07e11fa689ccd2c212c3ca3b8c320953de90/examples/ODIN_simple.xlsx) for your first postings. Of course some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row in order to jump to transaction fb03.
+Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit). Create a package first, we recommend ZODIN. You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/a18d07e11fa689ccd2c212c3ca3b8c320953de90/examples/ODIN_simple.xlsx) for your first postings. Of course, some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row to jump to transaction fb03.
 
 ## Authorization IMPORTANT
-ODIN uses BAPI BAPI_ACC_DOCUMENT_POST for posting. *Note that this FM doesn't perform any authority checks and therefore also ODIN comes without checking of authority for postings*. Custom authority checks can be implemented for instance in the extension BADI_ACC_DOCUMENT (see SAP note [1748416](https://launchpad.support.sap.com/#/notes/1748416) on this matter). 
-Besides ODIN requires authorization for filehandling, varying wether files are loaded from local client or server. We recommend checking with transaction stauthtrace (or st01) if necessary.
+ODIN uses BAPI BAPI_ACC_DOCUMENT_POST for posting. *Note that this FM doesn't perform any authority checks and therefore also ODIN comes without checking of authority for postings*. Custom authority checks can be implemented for instance in the extension BADI_ACC_DOCUMENT (see SAP note [1748416](https://launchpad.support.sap.com/#/notes/1748416) on this matter).
+
+Besides ODIN requires authorization for file handling, varying whether files are loaded from local client or server. We recommend checking with transaction stauthtrace (or st01) if necessary.
 
 ## Available fields
 Many common fields are available, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
