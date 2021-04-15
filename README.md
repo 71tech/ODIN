@@ -82,3 +82,9 @@ Suggestions: Aliases for good old (german) bkpf/bseg field names, REST/JSON Inte
 
 Please open an issue for comments, suggestions, questions etc.
 
+## Acknowledgements
+
+This project is kindly sponsored by
+
+<img src="https://www.prosiebensat1.com/public/build/patternlib/front/images/logo.svg" alt="P7S1 Media SE Logo" width="200"/>
+
