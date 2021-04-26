@@ -600,10 +600,23 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         ELSEIF zcl_odin_posting=>has_date_type( <fs> ) = abap_true.
           IF input_mode = me->abap2xlsx.
             TRY.
-                CALL METHOD zcl_excel_common=>('EXCEL_STRING_TO_DATE') EXPORTING ip_value = line-value RECEIVING ep_value = <fs>.
+                IF line-value IS NOT INITIAL.
+                  CALL METHOD zcl_excel_common=>('EXCEL_STRING_TO_DATE') EXPORTING ip_value = line-value RECEIVING ep_value = <fs>.
+                ENDIF.
               CATCH zcx_excel INTO DATA(cx_excel).
-                state = me->state-error.
-                msg = |Could not convert { line-value } into date: { cx_excel->if_message~get_text( ) }|.
+                CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'
+                  EXPORTING
+                    date_external            = line-value
+*                   ACCEPT_INITIAL_DATE      =
+                  IMPORTING
+                    date_internal            = <fs>
+                  EXCEPTIONS
+                    date_external_is_invalid = 1
+                    OTHERS                   = 2.
+                IF sy-subrc <> 0.
+                  state = me->state-error.
+                  msg = |Could not convert { line-value } into date: { cx_excel->if_message~get_text( ) }|.
+                ENDIF.
             ENDTRY.
           ELSE.
             CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'

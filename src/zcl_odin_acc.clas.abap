@@ -33,8 +33,6 @@ METHOD if_ex_acc_document~change .
   FIELD-SYMBOLS: <l_struc> TYPE any,
                  <l_field> TYPE any.
 
-
-
   LOOP AT c_extension2 INTO wa_extension
     WHERE structure = zcl_odin_posting=>odin_extension_structure.
     CONCATENATE wa_extension-valuepart1 wa_extension-valuepart2
