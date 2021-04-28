@@ -32,7 +32,7 @@ ABAP releases older than 7.40 will not work. Release 7.40 might be ok; however i
 ## Quick start
 Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit), create package ZODIN (language = EN) first. In case of troubles with the installation open an issue.
 
-You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/a18d07e11fa689ccd2c212c3ca3b8c320953de90/examples/ODIN_simple.xlsx) for your first postings. Of course, some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row to jump to transaction fb03.
+You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/main/examples/ODIN_simple.xlsx) for your first postings. Of course, some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row to jump to transaction fb03.
 
 ## Authorization IMPORTANT
 ODIN uses BAPI BAPI_ACC_DOCUMENT_POST for posting. *Note that this FM doesn't perform any authority checks and therefore also ODIN comes without checking of authority for postings*. Custom authority checks can be implemented for instance in the extension BADI_ACC_DOCUMENT (see SAP note [1748416](https://launchpad.support.sap.com/#/notes/1748416) on this matter).
