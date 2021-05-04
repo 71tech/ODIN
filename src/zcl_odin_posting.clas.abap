@@ -208,9 +208,9 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
     DATA(cols) = alv->get_columns( ).
     DATA(col) = cols->get_column( 'COUNTER' ).
     col->set_short_text( 'Counter'(000)  ).
-    CLEAR col.
-    col = cols->get_column( 'STRATEGY'  ).
-    col->set_short_text( 'Strategy'(001) ).
+*    CLEAR col.
+*    col = cols->get_column( 'STRATEGY'  ).
+*    col->set_short_text( 'Strategy'(001) ).
     CLEAR col.
     col = cols->get_column( 'STATE' ).
     col->set_short_text( 'Status'(002) ).
@@ -571,77 +571,95 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
     DATA state LIKE s_internal-state VALUE me->state-unknown.
     DATA msg LIKE s_internal-msg.
     DATA tmp_float TYPE f.
+    DATA component TYPE string.
     LOOP AT t_key_value INTO line.
-      CHECK line-key IS NOT INITIAL.
-      ASSIGN COMPONENT line-key OF STRUCTURE s_internal TO <fs>.
-      IF sy-subrc = 0.
-        IF zcl_odin_posting=>has_numeric_type( <fs> ) = abap_true.
-          TRY.
-              IF me->input_mode = me->abap2xlsx.
-                <fs> = line-value.
-              ELSEIF me->input_mode = me->csv.
-                REPLACE ALL OCCURRENCES OF me->csv_thousands_separator IN line-value WITH ''.
-                IF me->csv_decimal_separator NE '.'.
-                  REPLACE ALL OCCURRENCES OF me->csv_decimal_separator IN line-value WITH '.'.
-                ENDIF.
-                <fs> = line-value.
-              ENDIF.
-            CATCH cx_root INTO DATA(cx_root).
-              "Hack for exponential notation with conversion to float first
-              TRY.
-                  CLEAR tmp_float.
-                  tmp_float = line-value.
-                  <fs> = tmp_float.
-                CATCH cx_root INTO cx_root.
-                  state = me->state-error.
-                  msg = |Could not convert { line-value } into number: { cx_root->if_message~get_text( ) }|.
-              ENDTRY.
-          ENDTRY.
-        ELSEIF zcl_odin_posting=>has_date_type( <fs> ) = abap_true.
-          IF input_mode = me->abap2xlsx.
-            TRY.
-                IF line-value IS NOT INITIAL.
-                  CALL METHOD zcl_excel_common=>('EXCEL_STRING_TO_DATE') EXPORTING ip_value = line-value RECEIVING ep_value = <fs>.
-                ENDIF.
-              CATCH zcx_excel INTO DATA(cx_excel).
-                CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'
-                  EXPORTING
-                    date_external            = line-value
-*                   ACCEPT_INITIAL_DATE      =
-                  IMPORTING
-                    date_internal            = <fs>
-                  EXCEPTIONS
-                    date_external_is_invalid = 1
-                    OTHERS                   = 2.
-                IF sy-subrc <> 0.
-                  state = me->state-error.
-                  msg = |Could not convert { line-value } into date: { cx_excel->if_message~get_text( ) }|.
-                ENDIF.
-            ENDTRY.
-          ELSE.
-            CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'
-              EXPORTING
-                date_external            = line-value
-*               ACCEPT_INITIAL_DATE      =
-              IMPORTING
-                date_internal            = <fs>
-              EXCEPTIONS
-                date_external_is_invalid = 1
-                OTHERS                   = 2.
-            IF sy-subrc <> 0.
-              state = me->state-error.
-              MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO msg.
-            ENDIF.
+      CLEAR component.
+      IF line-key IS NOT INITIAL.
+        SELECT SINGLE field_name
+          FROM zodin_alias
+          INTO component
+          WHERE alias_name = line-key
+            AND strategy = me->strategy.
+        IF sy-subrc IS NOT INITIAL.
+          SELECT SINGLE field_name
+            FROM zodin_alias
+            INTO component
+            WHERE alias_name = line-key
+              AND strategy = ''.
+          IF sy-subrc IS NOT INITIAL.
+            component = line-key.
           ENDIF.
-        ELSE.
-          <fs> = line-value.
-          IF line-key = 'BUKRS' OR line-key = 'BWART' OR line-key = 'LIFNR' OR line-key = 'KUNNR' OR line-key = 'HKONT' OR line-key = 'AUFNR'
-            OR line-key = 'KOSTL' OR line-key = 'VBEL2' OR line-key = 'EBELN'.
-            CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
-              EXPORTING
-                input  = <fs>
-              IMPORTING
-                output = <fs>.
+        ENDIF.
+        ASSIGN COMPONENT component OF STRUCTURE s_internal TO <fs>.
+        IF sy-subrc = 0.
+          IF zcl_odin_posting=>has_numeric_type( <fs> ) = abap_true.
+            TRY.
+                IF me->input_mode = me->abap2xlsx.
+                  <fs> = line-value.
+                ELSEIF me->input_mode = me->csv.
+                  REPLACE ALL OCCURRENCES OF me->csv_thousands_separator IN line-value WITH ''.
+                  IF me->csv_decimal_separator NE '.'.
+                    REPLACE ALL OCCURRENCES OF me->csv_decimal_separator IN line-value WITH '.'.
+                  ENDIF.
+                  <fs> = line-value.
+                ENDIF.
+              CATCH cx_root INTO DATA(cx_root).
+                "Hack for exponential notation with conversion to float first
+                TRY.
+                    CLEAR tmp_float.
+                    tmp_float = line-value.
+                    <fs> = tmp_float.
+                  CATCH cx_root INTO cx_root.
+                    state = me->state-error.
+                    msg = |Could not convert { line-value } into number: { cx_root->if_message~get_text( ) }|.
+                ENDTRY.
+            ENDTRY.
+          ELSEIF zcl_odin_posting=>has_date_type( <fs> ) = abap_true.
+            IF input_mode = me->abap2xlsx.
+              TRY.
+                  IF line-value IS NOT INITIAL.
+                    CALL METHOD zcl_excel_common=>('EXCEL_STRING_TO_DATE') EXPORTING ip_value = line-value RECEIVING ep_value = <fs>.
+                  ENDIF.
+                CATCH zcx_excel INTO DATA(cx_excel).
+                  CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'
+                    EXPORTING
+                      date_external            = line-value
+*                     ACCEPT_INITIAL_DATE      =
+                    IMPORTING
+                      date_internal            = <fs>
+                    EXCEPTIONS
+                      date_external_is_invalid = 1
+                      OTHERS                   = 2.
+                  IF sy-subrc <> 0.
+                    state = me->state-error.
+                    msg = |Could not convert { line-value } into date: { cx_excel->if_message~get_text( ) }|.
+                  ENDIF.
+              ENDTRY.
+            ELSE.
+              CALL FUNCTION 'CONVERT_DATE_TO_INTERNAL'
+                EXPORTING
+                  date_external            = line-value
+*                 ACCEPT_INITIAL_DATE      =
+                IMPORTING
+                  date_internal            = <fs>
+                EXCEPTIONS
+                  date_external_is_invalid = 1
+                  OTHERS                   = 2.
+              IF sy-subrc <> 0.
+                state = me->state-error.
+                MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO msg.
+              ENDIF.
+            ENDIF.
+          ELSE.
+            <fs> = line-value.
+            IF component = 'BUKRS' OR component = 'BWART' OR component = 'LIFNR' OR component = 'KUNNR' OR component = 'HKONT' OR component = 'AUFNR'
+              OR component = 'KOSTL' OR component = 'VBEL2' OR component = 'EBELN' OR component = 'KUNNR_GL' OR component = 'LIFNR_GL'.
+              CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
+                EXPORTING
+                  input  = <fs>
+                IMPORTING
+                  output = <fs>.
+            ENDIF.
           ENDIF.
         ENDIF.
       ENDIF.
@@ -893,7 +911,7 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         header-doc_type = s_document-blart.
         header-comp_code = s_document-bukrs.
         header-ref_doc_no = s_document-xblnr.
-        header-header_txt = s_document-butxt.
+        header-header_txt = s_document-bktxt.
         header-username = sy-uname.
         header-fisc_year = s_document-gjahr.
         header-fis_period = s_document-monat.
@@ -958,6 +976,8 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         s_glaccount-quantity = s_document-menge.
         s_glaccount-base_uom = s_document-meins.
         s_glaccount-alloc_nmbr = s_document-zuonr.
+        s_glaccount-customer = s_document-kunnr_gl.
+        s_glaccount-vendor_no = s_document-lifnr_gl.
         APPEND s_glaccount TO glaccount.
 
         IF s_document-mwskz IS NOT INITIAL.
