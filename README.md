@@ -42,6 +42,8 @@ Besides ODIN requires authorization for file handling, varying whether files are
 ## Available fields
 Many common fields are available and alias names can be used, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
+:warning: The field name BUTXT for the document header text has been changed to the correct identifier BKTXT. If you still want to use BUTXT, use the alias table ZODIN_ALIAS.
+
 ## Dataset structure
 
 At the moment the interface can process Excel and csv files, further input options are planned.
