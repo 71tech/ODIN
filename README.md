@@ -1,3 +1,5 @@
+:warning: The field name BUTXT for the document header text has recently been changed to the correct identifier BKTXT. If you still want to use BUTXT, use the alias table ZODIN_ALIAS.
+
 # Open Document Interface (ODIN)
 
 ODIN is a flexible, extensible, easy to use, multi-purpose import interface for *SAP FI documents*. See [wiki](https://github.com/71tech/ODIN/wiki) for screenshots and further documentation.
