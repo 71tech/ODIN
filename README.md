@@ -40,7 +40,7 @@ ODIN uses BAPI BAPI_ACC_DOCUMENT_POST for posting. *Note that this FM doesn't pe
 Besides ODIN requires authorization for file handling, varying whether files are loaded from local client or server. We recommend checking with transaction stauthtrace (or st01) if necessary.
 
 ## Available fields
-Many common fields are available, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
+Many common fields are available and alias names can be used, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
 ## Dataset structure
 
@@ -79,7 +79,7 @@ See [wiki](https://github.com/71tech/ODIN/wiki/BAdI-Reference-(Extensions)).
 
 Your [contribution](https://docs.abapgit.org/guide-contributing.html) is very welcome!
 
-Suggestions: Aliases for good old (german) bkpf/bseg field names, REST/JSON Interface, SOAP/XML Interface, add fields, enable CPDs, Interface for DATEV format.
+Suggestions: REST/JSON Interface, SOAP/XML Interface, add fields, enable CPDs, Interface for DATEV format.
 
 ## Feedback
 
