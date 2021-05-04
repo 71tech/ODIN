@@ -1,4 +1,4 @@
-:warning: The field name BUTXT for the document header text has recently been changed to the correct identifier BKTXT. If you still want to use BUTXT, use the alias table ZODIN_ALIAS.
+:warning: The field name BUTXT for the document header text has recently been changed to the correct identifier BKTXT. If you still want to use BUTXT, use the alias table ZODIN_ALIAS. If you use this field in an extension, you have to adjust your coding (replace BUTXT with BKTXT).
 
 # Open Document Interface (ODIN)
 
