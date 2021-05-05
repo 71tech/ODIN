@@ -56,11 +56,11 @@ For Excel and csv the following applies:
 - The order of the columns is arbitrary
 - From row two on, the user data follows, which must be arranged in the same way as in the first row
 - One FI document line item corresponds to one row in the input data. Several rows are combined into one document via the COUNTER field
-- There is no separate line for header fields from table bkpf, such as BUTXT, instead they are to be repeated redundantly in each row
+- There is no separate line for header fields from table bkpf, such as BKTXT, instead they are to be repeated redundantly in each row
 
 ### Example (csv)
 ```
-COUNTER;STRATEGY;BUKRS;BUTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRBTR_S;WRBTR_H;WAERS;MWSKZ;CUSTOM1
+COUNTER;STRATEGY;BUKRS;BKTXT;XBLNR;BLDAT;BUDAT;BLART;SGTXT;LIFNR;KUNNR;HKONT;WRBTR_S;WRBTR_H;WAERS;MWSKZ;CUSTOM1
 1;MY_OPTIONAL_STRATEGY;1234;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;;;154200;119,00;;EUR;V2;Some custom value
 1;MY_OPTIONAL_STRATEGY;1234;Example for incoming invoice;INVOICE-001;26.03.2020;26.03.2020;KR;Text position;802236;;;;119,00;EUR;V2;Some custom value
 2;MY_OPTIONAL_STRATEGY;1234;Another example;INVOICE-002;27.03.2020;26.03.2020;KR;Text position;;;154200;;59,50;EUR;V2;Another custom value
