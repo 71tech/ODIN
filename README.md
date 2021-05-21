@@ -41,6 +41,8 @@ ODIN uses BAPI BAPI_ACC_DOCUMENT_POST for posting. *Note that this FM doesn't pe
 
 Besides ODIN requires authorization for file handling, varying whether files are loaded from local client or server. We recommend checking with transaction stauthtrace (or st01) if necessary.
 
+Tolerance groups (transaction oba4) are not checked.
+
 ## Available fields
 Many common fields are available and alias names can be used, see [wiki](https://github.com/71tech/ODIN/wiki/Available-fields) for details. If something is missing you can open an issue or make a [contribution](#contribution).
 
