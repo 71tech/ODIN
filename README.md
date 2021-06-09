@@ -32,7 +32,7 @@ If Excel files are processed, [abap2xlsx](https://github.com/sapmentors/abap2xls
 ABAP releases older than 7.40 will not work. Release 7.40 might be ok; however it has not been tested. Release 7.50 and later should be fine. S/4 releases should work as well, however test is missing. Feedback at that point is very welcome.
 
 ## Quick start
-Clone the ODIN repo using [abapgit](https://github.com/abapGit/abapGit), create package ZODIN (language = EN) first. In case of troubles with the installation open an issue.
+Clone the ODIN repo using [abapGit](https://github.com/abapGit/abapGit), create package ZODIN (language = EN) first. In case of troubles with the installation open an issue.
 
 You can utilize this [simple Excel template](https://github.com/71tech/ODIN/blob/main/examples/ODIN_simple.xlsx) for your first postings. Of course, some IDs such as company code, g/l account or vendor number need to be adjusted to your environment. Go to transaction ZODIN, select the local file, hit "Execute" and an ALV Grid List with your posting data should appear. If the status says  "READY" and everything looks fine hit "Post" and a FI document will be created. Double click on a row to jump to transaction fb03.
 
