@@ -653,7 +653,8 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
           ELSE.
             <fs> = line-value.
             IF component = 'BUKRS' OR component = 'BWART' OR component = 'LIFNR' OR component = 'KUNNR' OR component = 'HKONT' OR component = 'AUFNR'
-              OR component = 'KOSTL' OR component = 'VBEL2' OR component = 'EBELN' OR component = 'KUNNR_GL' OR component = 'LIFNR_GL'.
+              OR component = 'KOSTL' OR component = 'VBEL2' OR component = 'EBELN' OR component = 'KUNNR_GL' OR component = 'LIFNR_GL'
+              or component = 'ANLN1' or component = 'ANLN2'.
               CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
                 EXPORTING
                   input  = <fs>
@@ -896,9 +897,10 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
           tax            TYPE bset-fwste,
           itemno_tax     LIKE itemno VALUE 9999999999,
           segments       TYPE i,
-          msg            TYPE string.
+          msg            TYPE string,
+          ktopl          TYPE t001-ktopl.
 
-    FIELD-SYMBOLS <fs> TYPE any.
+    FIELD-SYMBOLS  <fs> TYPE any.
 
     LOOP AT document INTO DATA(s_document).
 
@@ -928,6 +930,9 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
       ENDIF.
 
       MOVE-CORRESPONDING s_document TO odin_extension.
+      IF s_document-anln1 IS NOT INITIAL AND s_document-bewar IS NOT INITIAL.
+        odin_extension-anbwa = s_document-bewar.
+      ENDIF.
       IF odin_extension IS NOT INITIAL.
         odin_extension-posnr = itemno.
         s_extension2-structure = me->odin_extension_structure.
@@ -941,7 +946,7 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         wrbtr = s_document-wrbtr_s.
       ENDIF.
 
-      IF s_document-hkont IS NOT INITIAL.
+      IF s_document-hkont IS NOT INITIAL OR s_document-anln1 IS NOT INITIAL.
         ADD 1 TO segments.
       ENDIF.
       IF s_document-lifnr IS NOT INITIAL.
@@ -951,11 +956,36 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         ADD 1 TO segments.
       ENDIF.
       IF segments NE 1.
-        RAISE EXCEPTION TYPE zcx_odin EXPORTING text = 'Please specify exactly one of the following fields: lifnr, kunnr, hkont'.
+        RAISE EXCEPTION TYPE zcx_odin EXPORTING text = 'Please specify exactly one of the following fields: LIFNR, KUNNR, HKONT/ANLN1'.
       ENDIF.
 
-      IF s_document-hkont IS NOT INITIAL.
+      IF s_document-hkont IS NOT INITIAL OR s_document-anln1 IS NOT INITIAL.
         s_glaccount-itemno_acc = itemno.
+        IF s_document-anln1 IS NOT INITIAL.
+          s_glaccount-asset_no = s_document-anln1. "Note that anbwa has to be set in BADI_ACC_DOCUMENT for asset postings
+          s_glaccount-acct_type = 'A'. "Asset
+          IF s_document-anln2 IS INITIAL.
+            s_document-anln2 = '0000'.
+          ENDIF.
+          s_glaccount-sub_number = s_document-anln2.
+          IF s_document-hkont IS INITIAL.
+            CALL FUNCTION 'FI_CHART_OF_ACCOUNT_DETERMINE'
+              EXPORTING
+                i_bukrs = s_document-bukrs
+              IMPORTING
+                e_ktopl = ktopl.
+            SELECT SINGLE ktogr FROM anla INTO @DATA(ktogr)
+              WHERE bukrs = @s_document-bukrs
+              AND anln1 = @s_document-anln1
+              AND anln2 = @s_document-anln2.
+            IF sy-subrc = 0.
+              SELECT SINGLE ktansw FROM t095 INTO s_document-hkont
+                WHERE ktopl = ktopl
+                AND ktogr = ktogr
+                AND afabe = '01'.
+            ENDIF.
+          ENDIF.
+        ENDIF.
         s_glaccount-gl_account = s_document-hkont.
         s_glaccount-orderid = s_document-aufnr.
         s_glaccount-item_text = s_document-sgtxt.
@@ -978,6 +1008,7 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         s_glaccount-alloc_nmbr = s_document-zuonr.
         s_glaccount-customer = s_document-kunnr_gl.
         s_glaccount-vendor_no = s_document-lifnr_gl.
+        s_glaccount-profit_ctr = s_document-prctr.
         APPEND s_glaccount TO glaccount.
 
         IF s_document-mwskz IS NOT INITIAL.
@@ -1085,6 +1116,7 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         s_vendor-sp_gl_ind = s_document-umskz.
         s_vendor-partner_bk = s_document-bvtyp.
         s_vendor-tax_code = s_document-mwskz.
+        s_vendor-profit_ctr = s_document-prctr.
         APPEND s_vendor TO vendor.
         s_amount-itemno_acc = itemno.
         s_amount-currency = s_document-waers.
@@ -1111,6 +1143,7 @@ CLASS ZCL_ODIN_POSTING IMPLEMENTATION.
         s_customer-sp_gl_ind = s_document-umskz.
         s_customer-partner_bk = s_document-bvtyp.
         s_customer-tax_code = s_document-mwskz.
+        s_customer-profit_ctr = s_document-prctr.
         APPEND s_customer TO customer.
         s_amount-itemno_acc = itemno.
         s_amount-currency = s_document-waers.
